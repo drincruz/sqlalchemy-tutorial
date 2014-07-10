@@ -49,3 +49,19 @@ s.commit()
 it = s.query(Department).filter(Department.name == 'IT').one()
 print(it.employees[0].name)
 
+"""
+Continuing with tutorial
+learning some SQLAlchemy SELECTs
+
+"""
+from sqlalchemy import select
+
+find_it = select([Department.id]).where(Department.name == 'IT')
+rs = s.execute(find_it)
+print(rs)
+
+print(rs.fetchone())
+
+find_john = select([Employee.id]).where(Employee.department_id == 1)
+rs = s.execute(find_john)
+print(rs.fetchone())
